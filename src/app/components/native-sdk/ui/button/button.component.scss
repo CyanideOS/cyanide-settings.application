@@ -1,0 +1,89 @@
+@import "../../scss/theme";
+@import "../../scss/constants";
+@import "../../scss/tools.scss";
+@import "../../../../scss/constants";
+
+$background: map-get(
+  $map: $primary,
+  $key: "color",
+);
+
+button {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+
+  outline: none;
+  background: $background;
+  @include text-color($background);
+  transition: $transition;
+
+  &:hover {
+    background: map-get($map: $primary, $key: "hover");
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.disabled {
+    $disabled-background: map-get(
+      $map: $primary,
+      $key: "disabled",
+    );
+    background: $disabled-background;
+
+    &:hover {
+      background: $disabled-background;
+    }
+
+    &:active {
+      transform: unset;
+    }
+
+    .content {
+      @include text-color($disabled-background, true);
+
+      img.button-icon {
+        opacity: 0.6;
+      }
+
+      img.nutella-icon {
+        @include image-color(
+          $background,
+          false
+        ); //? Explicitly mentioned "false" so that opacity of its parent doesn't get added!
+      }
+    }
+  }
+
+  &.outlined {
+    border: 2px solid map-get($map: $primary, $key: "outlined");
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .innerText {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .button-component-data,
+    .innerText {
+      margin-left: 0.7rem;
+    }
+
+    img.button-icon {
+      height: 100%;
+    }
+
+    img.nutella-icon {
+      height: 100%;
+
+      @include image-color($background);
+    }
+  }
+}

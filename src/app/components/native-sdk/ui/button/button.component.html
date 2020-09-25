@@ -1,0 +1,32 @@
+<button
+  #button
+  (mousemove)="move($event)"
+  [style]="{
+    '--mouseX': X,
+    '--mouseY': Y
+  }"
+  [disabled]="isDisabled"
+  [ngStyle]="{
+    width: width + 'rem',
+    height: height + 'rem',
+    'max-width': width + 'rem',
+    'max-height': height + 'rem',
+    'text-overflow': overflow
+  }"
+  [ngClass]="{ disabled: isDisabled, outlined: isOutlined }"
+>
+  <div class="content">
+    <img class="button-icon" [src]="icon" *ngIf="icon" />
+    <img
+      class="nutella-icon"
+      [src]="'../../../../assets/icons/nutella/' + nutellaIcon + '.png'"
+      *ngIf="nutellaIcon"
+    />
+    <div
+      class="button-component-data"
+      *ngIf="innerComponent"
+      [innerHTML]="innerComponent.outerHTML"
+    ></div>
+    <div class="innerText" *ngIf="innerText" [innerText]="innerText"></div>
+  </div>
+</button>

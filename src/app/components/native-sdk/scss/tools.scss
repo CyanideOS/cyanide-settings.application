@@ -1,0 +1,28 @@
+@import "./theme";
+@import "../../../scss/constants";
+
+$lightness-threshold: 50;
+
+@mixin text-color($background, $isDisabled: false) {
+  @if (lightness($background) > $lightness-threshold) {
+    color: map-get($map: $text, $key: "black");
+  } @else {
+    color: map-get($map: $text, $key: "white");
+  }
+
+  @if ($isDisabled) {
+    opacity: 0.6;
+  }
+}
+
+@mixin image-color($background, $isDisabled: false) {
+  // Assuming all images are black in fill
+  @if (lightness($background) > $lightness-threshold) {
+    filter: invert(0);
+  } @else {
+    filter: invert(1);
+  }
+  @if ($isDisabled) {
+    opacity: 0.6;
+  }
+}
